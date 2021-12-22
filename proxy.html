@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    const handler = {
+        get(obj, props, nweVal) {
+            console.log(obj);
+            // 一定要回傳值
+            return obj[props];
+        },
+        set(obj, props, newVal) {
+            console.log(obj);
+            obj[props] = newVal;
+            // 一定要回傳 true 代表值有被正確的設定
+            return true;
+        }
+    }
+    // 第一個參數：欲 proxy 化的原始物件
+    // 第二個參數：handler 規範 proxy 的 get、set 方法
+    const proxy = new Proxy({a:1}, handler);
+    console.log(proxy.a = 2);
+</script>
+</html>
